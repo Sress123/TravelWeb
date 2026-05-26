@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Booking Confirmed";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container text-center" style="margin-top: 120px; margin-bottom: 80px;">
+
+    <div style="max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 16px; padding: 3rem; background:#fff;">
+
+        <div style="width:80px; height:80px; background:#e8f5e9; border-radius:50%; display:flex; align-items:center; justify-content:center; margin: 0 auto 1.5rem;">
+            <i class="fa fa-check" style="font-size:36px; color:#2e7d32;"></i>
+        </div>
+
+        <h2 class="fw-bold text-uppercase mb-2">Booking Confirmed!</h2>
+        <div style="width:60px; height:3px; background-color:#c0392b; margin:0 auto 1.5rem;"></div>
+
+        <p style="font-size:16px; color:#555;">
+            Thank you, <strong>@ViewBag.Name</strong>! Your booking for
+            <strong>@ViewBag.TourName</strong> has been successfully received.
+        </p>
+
+        <p style="font-size:14px; color:#888;">
+            Our team will contact you shortly to confirm your reservation details.
+        </p>
+
+        <div class="d-flex gap-3 justify-content-center mt-4">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-danger px-4">
+                <i class="fa fa-home me-2"></i> Back to Home
+            </a>
+            <a asp-controller="Destinations" asp-action="Index" class="btn btn-outline-secondary px-4">
+                <i class="fa fa-search me-2"></i> Explore More Tours
+            </a>
+        </div>
+
+    </div>
+</div>

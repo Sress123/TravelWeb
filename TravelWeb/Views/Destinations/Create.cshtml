@@ -1,0 +1,100 @@
+﻿@model TravelWeb.Models.Destination
+@{
+    ViewData["Title"] = Model.Id == 0 ? "Add Destination" : "Edit Destination";
+}
+
+<div class="container py-5 mt-5" style="max-width: 700px;">
+    <h2 class="fw-bold mb-4">@ViewData["Title"]</h2>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="PhotoCategory" type="hidden" />
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Country</label>
+            <select asp-for="Country" class="form-select" required>
+                <option value="">-- Select Country --</option>
+                <option value="Nepal">Nepal</option>
+                <option value="Bhutan">Bhutan</option>
+                <option value="Tibet">Tibet</option>
+                <option value="India">India</option>
+                <option value="Bangladesh">Bangladesh</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Destination Category</label>
+            <select asp-for="Destinationcategory" class="form-select" required>
+                <option value="">-- Select Category --</option>
+                <option value="Trekking & Hiking">Trekking & Hiking</option>
+                <option value="Nature & Cultural Excursions">Nature & Cultural Excursions</option>
+                <option value="Motor Biking Tour">Motor Biking Tour</option>
+                <option value="Peak Climbing & Expeditions">Peak Climbing & Expeditions</option>
+                <option value="Helicopter Excursions">Helicopter Excursions</option>
+                <option value="Yoga & Wellness">Yoga & Wellness</option>
+                <option value="Mountain Biking">Mountain Biking</option>
+                <option value="Fishing Experience">Fishing Experience</option>
+                <option value="Festival & Cultural Tours">Festival & Cultural Tours</option>
+                <option value="Overland Tours">Overland Tours</option>
+                <option value="Mt. Kailash and Lake Mansarovar">Mt. Kailash and Lake Mansarovar</option>
+                <option value="Leh Ladakh">Leh Ladakh</option>
+                <option value="West Bangal & Sikkim">West Bangal & Sikkim</option>
+                <option value="North India">North India</option>
+                <option value="Kerela and Goa">Kerela and Goa</option>
+                <option value="Natural & Cultural Excursions">Natural & Cultural Excursions</option>
+                <option value="Natural & Cultural Excursions">Natural & Cultural Excursions</option>
+                <option value="Sundarban">Sundarban</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="7"
+                      placeholder="Describe this destination..."></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Photo</label>
+            @if (!string.IsNullOrEmpty(Model.PhotoCategory))
+            {
+                <div class="mb-2">
+                    <img src="@Model.PhotoCategory" class="rounded"
+                         style="height:150px; object-fit:cover; width:100%;" alt="Current Photo" />
+                    <small class="text-muted">Current photo — upload new to replace</small>
+                </div>
+            }
+            <input type="file" name="PhotoFile" class="form-control" accept="image/*" />
+            <!-- Preview -->
+            <div class="mt-2" id="previewContainer" style="display:none;">
+                <img id="photoPreview" src="#" alt="Preview"
+                     class="rounded" style="height:200px; object-fit:cover; width:100%;" />
+            </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-danger px-4">
+                @(Model.Id == 0 ? "Save Destination" : "Save Changes")
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+        </div>
+
+    </form>
+</div>
+
+
+@section Scripts {
+    <script>
+        document.querySelector('input[name="PhotoFile"]').addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('photoPreview').src = e.target.result;
+                    document.getElementById('previewContainer').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}

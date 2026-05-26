@@ -1,0 +1,150 @@
+﻿@model TravelWeb.Models.Destination
+@{
+    ViewData["Title"] = @Model.Country;
+}
+<style>
+    .contact-img {
+        height: 80vh;
+        object-fit: cover;
+        object-position: center;
+        filter: brightness(0.6);
+    }
+
+    .tour-card:hover {
+        transform: translateY(-5px);
+        transition: 0.3s ease;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+    }
+</style>
+
+<!-- Hero Image -->
+<div style="position: relative;">
+    <img src="@Model.PhotoCategory" class="d-block w-100 contact-img" alt="Details Page" />
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; text-align: center;">
+        <h1 class="text-white fw-bold text-uppercase"
+            style="font-size: 3rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
+            @Model.Destinationcategory
+        </h1>
+    </div>
+</div>
+
+<!-- Breadcrumb -->
+<div class="container-fluid px-4 py-2" style="border-bottom: 1px solid #ddd;">
+    <nav>
+        <a href="/" class="text-dark text-decoration-none">Home</a>
+        <span class="mx-2">/</span>
+        <a asp-action="Index" class="text-dark text-decoration-none">Destinations</a>
+        <span class="mx-2">/</span>
+        <span class="text-muted">@Model.Country / @Model.Destinationcategory</span>
+    </nav>
+</div>
+
+<!-- Description + Admin Actions -->
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <p class="text-muted" style="text-align:justify; line-height:1.9; font-size:14px; font-weight:bold;">
+                @Model.Description
+            </p>
+            @if (Context.Session.GetString("UserRole") == "Admin")
+            {
+                <div class="d-flex gap-2 mt-3 mb-3">
+                    <a asp-action="Create" asp-route-id="@Model.Id" class="btn btn-danger px-4">
+                        <i class="fa fa-pen me-2"></i> Edit Destination
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id"
+                       class="btn btn-outline-danger px-4"
+                       onclick="return confirm('Delete this destination?')">
+                        <i class="fa fa-trash me-2"></i> Delete
+                    </a>
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                        <i class="fa fa-arrow-left me-2"></i> Back
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Tours Section -->
+<div class="container pb-5">
+
+    <!-- Heading + Add Tour Button -->
+    <div class="text-center mb-2">
+        <small class="text-muted text-uppercase" style="letter-spacing: 3px;">@Model.Country</small>
+        <h2 class="fw-bold mt-1 text-uppercase">@Model.Destinationcategory</h2>
+        <div style="width:60px; height:3px; background-color:#c0392b; margin:0 auto;"></div>
+    </div>
+
+    @if (Context.Session.GetString("UserRole") == "Admin")
+    {
+        <div class="text-end mb-4">
+            <a asp-controller="Tours" asp-action="Create"
+               asp-route-destinationId="@Model.Id"
+               class="btn btn-danger px-4">
+                <i class="fa fa-plus me-2"></i> Add Tour
+            </a>
+        </div>
+    }
+
+    @if (!Model.Tours.Any())
+    {
+        <div class="text-center py-4 text-muted">
+            <i class="fa fa-map fa-3x mb-3"></i>
+            <h6>No tours yet. Click "Add Tour" to add one.</h6>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var tour in Model.Tours)
+            {
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-lg h-100 tour-card">
+
+                        @if (!string.IsNullOrEmpty(tour.PhotoPath))
+                        {
+                            <img src="@tour.PhotoPath" class="card-img-top"
+                                 style="height:220px; object-fit:cover;" alt="@tour.Title" />
+                        }
+                        else
+                        {
+                            <div class="bg-secondary d-flex align-items-center justify-content-center"
+                                 style="height:220px;">
+                                <i class="fa fa-image fa-3x text-white"></i>
+                            </div>
+                        }
+
+                        <div class="card-body">
+                            <h6 class="fw-bold text-uppercase">@tour.Title</h6>
+                            <p class="text-muted" style="font-size:0.9rem;">
+                                @(tour.Description?.Length > 120
+                                                        ? tour.Description.Substring(0, 120) + "..."
+                                                        : tour.Description)
+                            </p>
+                        </div>
+                        <div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center pb-3">
+                            <div>
+                                <small class="text-muted">Trip Duration</small>
+                                <div class="fw-bold" style="font-size:0.9rem;">@tour.Duration</div>
+                            </div>
+                            <div class="d-flex flex-column gap-2">
+                                <!-- On Destination Details — go to Tour Details first -->
+                                <a asp-controller="Tours" asp-action="Details"
+                                   asp-route-id="@Model.Tours.FirstOrDefault()?.Id"
+                                   class="btn btn-success btn-sm rounded-pill px-3">
+                                    Book Now →
+                                </a>
+                                <a asp-controller="Tours" asp-action="Details"
+                                   asp-route-id="@tour.Id"
+                                   class="btn btn-danger btn-sm rounded-pill px-3">
+                                    View More →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

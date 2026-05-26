@@ -1,0 +1,259 @@
+﻿@model TravelWeb.Models.Tour
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 40px 10px;
+            border-bottom: 2px solid #c0392b;
+        }
+
+            .header img {
+                height: 70px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+                font-weight: bold;
+                margin: 10px 0 5px;
+            }
+
+            .header p {
+                color: #666;
+                margin: 0;
+                font-size: 14px;
+            }
+
+        .hero-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .section {
+            padding: 20px 40px;
+        }
+
+        .section-title {
+            color: #c0392b;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #c0392b;
+            padding-bottom: 6px;
+            margin-bottom: 15px;
+        }
+
+        .trip-facts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .fact-item {
+        }
+
+        .fact-label {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        .fact-value {
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        .itinerary-day {
+            margin-bottom: 16px;
+        }
+
+            .itinerary-day h4 {
+                font-size: 14px;
+                font-weight: bold;
+                margin: 0 0 6px;
+            }
+
+            .itinerary-day p {
+                margin: 0;
+                line-height: 1.7;
+                color: #444;
+                text-align: justify;
+                background: #f8f8f8;
+                padding: 10px;
+                border-radius: 4px;
+            }
+
+        .services ul {
+            padding-left: 20px;
+        }
+
+        .services li {
+            margin-bottom: 6px;
+            line-height: 1.6;
+        }
+
+        .included {
+            color: #27ae60;
+        }
+
+        .excluded {
+            color: #c0392b;
+        }
+
+        .route-map img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 40px;
+            border-top: 2px solid #c0392b;
+            font-size: 12px;
+            color: #666;
+            margin-top: 20px;
+        }
+
+            .footer strong {
+                color: #c0392b;
+            }
+
+        p {
+            text-align: justify;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <img src="BASE_URL/images/logo.png" alt="Logo" />
+        <h1>@Model.Title</h1>
+        @if (!string.IsNullOrEmpty(Model.Altitude))
+        {
+            <p>World's highest peak - Altitude: @Model.Altitude</p>
+        }
+    </div>
+
+    <!-- Hero Image -->
+    @if (!string.IsNullOrEmpty(Model.PhotoPath))
+    {
+        <img src="BASE_URL@Model.PhotoPath.TrimStart('/')" class="hero-img" alt="@Model.Title" />
+    }
+
+    <!-- Trip Facts -->
+    <div class="section">
+        <div class="section-title">Trip Facts</div>
+        <div class="trip-facts">
+            <div class="fact-item">
+                <div class="fact-label">Activities</div>
+                <div class="fact-value">@Model.Destination?.Destinationcategory</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-label">Region</div>
+                <div class="fact-value">@Model.Region</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-label">Duration</div>
+                <div class="fact-value">@Model.Duration</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-label">Trek Style</div>
+                <div class="fact-value">@Model.Grade</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-label">Best Seasons</div>
+                <div class="fact-value">@Model.BestSeasons</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-label">Highest Elevation</div>
+                <div class="fact-value">@Model.Altitude</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-label">Grade</div>
+                <div class="fact-value">@Model.Grade</div>
+            </div>
+            <div class="fact-item">
+                <div class="fact-label">Accommodation</div>
+                <div class="fact-value">@Model.Accommodation</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trip Overview -->
+    <div class="section">
+        <div class="section-title">Trip Overview</div>
+        <p>@Model.Description</p>
+    </div>
+
+    <!-- Itinerary -->
+    @if (Model.Itineraries.Any())
+    {
+        <div class="section">
+            <div class="section-title">Itinerary In Detail</div>
+            @foreach (var day in Model.Itineraries.OrderBy(i => i.DayNumber))
+            {
+                <div class="itinerary-day">
+                    <h4>Day @day.DayNumber: @day.Title</h4>
+                    <p>@day.Description</p>
+                </div>
+            }
+        </div>
+    }
+
+    <!-- Services -->
+    @if (Model.Services.Any())
+    {
+        var service = Model.Services.First();
+        <div class="section services">
+            <div class="section-title">Services Included</div>
+            <ul>
+                @foreach (var item in service.IncludeServices?.Split('\n') ?? Array.Empty<string>())
+                {
+                    <li class="included">✓ @item</li>
+                }
+            </ul>
+
+            <div class="section-title" style="margin-top:20px;">Services Not Included</div>
+            <ul>
+                @foreach (var item in service.NotIncludeServices?.Split('\n') ?? Array.Empty<string>())
+                {
+                    <li class="excluded">✗ @item</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <!-- Route Map -->
+    @if (!string.IsNullOrEmpty(Model.RouteMapPhotoPath))
+    {
+        <div class="section route-map">
+            <div class="section-title">Route Map</div>
+            <img src="BASE_URL@Model.RouteMapPhotoPath.TrimStart('/')" alt="Route Map" />
+        </div>
+    }
+
+    <!-- Footer -->
+    <div class="footer">
+        <strong>Kathmandu -16, Bohoratar, Nepal</strong><br />
+        Tel: +977 9801089018, +977 9851189018<br />
+        Email: info@asiaticroads.com &nbsp;|&nbsp; www.asiaticroads.com
+    </div>
+
+</body>
+</html>

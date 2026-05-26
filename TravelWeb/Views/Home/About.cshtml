@@ -1,0 +1,274 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .contact-img {
+        height: 80vh;
+        object-fit: cover;
+        object-position: center;
+        filter: brightness(0.6);
+    }
+</style>
+
+<!-- Hero Image -->
+<div style="position: relative;">
+    <img src="~/images/carousel/2.jpg" class="d-block w-100 contact-img" alt="About Us" />
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <h1 class="text-white fw-bold text-uppercase" style="font-size: 3rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">About Us</h1>
+    </div>
+</div>
+
+<!-- Breadcrumb -->
+<div class="container-fluid px-4 py-2" style="border-bottom: 1px solid #ddd;">
+    <nav>
+        <a href="/" class="text-dark text-decoration-none">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-muted">About Us</span>
+    </nav>
+</div>
+
+<div class="container py-5">
+
+    <!-- 1. ABOUT US -->
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-4">
+            <small class="text-muted text-uppercase" style="letter-spacing: 3px;">Who We Are</small>
+            <h2 class="fw-bold mt-2">ABOUT US</h2>
+            <div class="mx-auto mt-2" style="width: 60px; height: 3px; background-color: #c0392b;"></div>
+        </div>
+        <div class="col-md-10 mx-auto">
+            <p class="text-muted" style="text-align: justify; line-height: 1.9; font-size:14px; font-weight:bold;">
+                We are a team of passionate travel professionals dedicated to crafting unforgettable journeys
+                across South Asia. With years of experience in the tourism industry, we specialize in
+                providing high-end customized travel and tour packages in Nepal, Tibet, Bhutan, India, and Bangladesh.
+            </p>
+            <p class="text-muted" style="text-align: justify; line-height: 1.9; font-size:14px; font-weight:bold;">
+                Our mission is to connect travelers with the authentic culture, breathtaking landscapes, and
+                hidden gems of the region — going far beyond the typical tourist trail to deliver experiences
+                that are truly one of a kind.
+            </p>
+        </div>
+    </div>
+
+    <!-- 2. WHY US -->
+    <div class="row mb-5 py-5" style="background-color: #f8f8f8; border-radius: 10px;">
+        <div class="col-12 text-center mb-4">
+            <small class="text-muted text-uppercase" style="letter-spacing: 3px;">Our Difference</small>
+            <h2 class="fw-bold mt-2">WHY US</h2>
+            <div class="mx-auto mt-2" style="width: 60px; height: 3px; background-color: #c0392b;"></div>
+        </div>
+        <div class="col-md-10 mx-auto">
+            <p class="text-muted" style="text-align: justify; line-height: 1.9; font-size:14px; font-weight:bold;">
+                We go beyond simply booking trips — we create meaningful experiences tailored to your interests,
+                budget, and travel style. Our deep local knowledge and network of trusted partners across the
+                region allow us to offer exclusive access to destinations and experiences that most travelers
+                never get to see.
+            </p>
+            <p class="text-muted" style="text-align: justify; line-height: 1.9; font-size:14px; font-weight:bold;">
+                From the moment you contact us to the moment you return home, our dedicated team is with you
+                every step of the way — ensuring every detail is taken care of so you can focus on what matters
+                most: enjoying your journey.
+            </p>
+        </div>
+    </div>
+
+    <!-- 3. OUR PRIORITIES -->
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-4">
+            <small class="text-muted text-uppercase" style="letter-spacing: 3px;">What Drives Us</small>
+            <h2 class="fw-bold mt-2">OUR PRIORITIES</h2>
+            <div class="mx-auto mt-2" style="width: 60px; height: 3px; background-color: #c0392b;"></div>
+        </div>
+        <div class="col-md-10 mx-auto">
+            <div class="row g-4">
+
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start gap-3 p-3 rounded shadow-sm bg-white">
+                        <i class="fa fa-shield-alt text-danger mt-1 fa-lg"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Safety</h6>
+                            <p class="text-muted mb-0" style="font-size: 0.9rem;">
+                                Your safety is our top priority on every trip we organize.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start gap-3 p-3 rounded shadow-sm bg-white">
+                        <i class="fa fa-map-marked-alt text-danger mt-1 fa-lg"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Deep Regional Expertise</h6>
+                            <p class="text-muted mb-0" style="font-size: 0.9rem;">
+                                Deep expertise in regional travel infrastructure across South Asia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start gap-3 p-3 rounded shadow-sm bg-white">
+                        <i class="fa fa-comments text-danger mt-1 fa-lg"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Clear Communication</h6>
+                            <p class="text-muted mb-0" style="font-size: 0.9rem;">
+                                Prompt and clear responses in all communication with our clients.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start gap-3 p-3 rounded shadow-sm bg-white">
+                        <i class="fa fa-star text-danger mt-1 fa-lg"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Luxury & Unique Experiences</h6>
+                            <p class="text-muted mb-0" style="font-size: 0.9rem;">
+                                Creating customized and luxury trips with truly unique experiences.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start gap-3 p-3 rounded shadow-sm bg-white">
+                        <i class="fa fa-lightbulb text-danger mt-1 fa-lg"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Knowledge & Experience Sharing</h6>
+                            <p class="text-muted mb-0" style="font-size: 0.9rem;">
+                                Sharing our knowledge and experience to enrich every traveler's journey.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 4, 5, 6, 7 — Service Cards -->
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-4">
+            <small class="text-muted text-uppercase" style="letter-spacing: 3px;">What We Offer</small>
+            <h2 class="fw-bold mt-2">OUR SERVICES</h2>
+            <div class="mx-auto mt-2" style="width: 60px; height: 3px; background-color: #c0392b;"></div>
+        </div>
+
+        <!-- High Quality Services -->
+        <div class="col-md-6 mb-4">
+            <div class="p-4 rounded shadow-sm bg-white h-100">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width:50px; height:50px; background-color:#c0392b;">
+                        <i class="fa fa-trophy text-white"></i>
+                    </div>
+                    <h5 class="fw-bold mb-0">HIGH QUALITY SERVICES</h5>
+                </div>
+                <p class="text-muted" style="text-align: justify; line-height: 1.9;">
+                    We are committed to delivering the highest quality of service in every aspect of your trip.
+                    From premium accommodations to expert guides, every element is carefully selected to ensure
+                    an exceptional travel experience that exceeds your expectations.
+                </p>
+            </div>
+        </div>
+
+        <!-- Health and Safety -->
+        <div class="col-md-6 mb-4">
+            <div class="p-4 rounded shadow-sm bg-white h-100">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width:50px; height:50px; background-color:#c0392b;">
+                        <i class="fa fa-heartbeat text-white"></i>
+                    </div>
+                    <h5 class="fw-bold mb-0">HEALTH AND SAFETY</h5>
+                </div>
+                <p class="text-muted" style="text-align: justify; line-height: 1.9;">
+                    The health and safety of our travelers is always our foremost concern. We follow strict
+                    safety protocols and work with certified local partners to ensure every journey is conducted
+                    in the safest and most responsible manner possible.
+                </p>
+            </div>
+        </div>
+
+        <!-- Tour Management -->
+        <div class="col-md-6 mb-4">
+            <div class="p-4 rounded shadow-sm bg-white h-100">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width:50px; height:50px; background-color:#c0392b;">
+                        <i class="fa fa-tasks text-white"></i>
+                    </div>
+                    <h5 class="fw-bold mb-0">TOUR MANAGEMENT</h5>
+                </div>
+                <p class="text-muted" style="text-align: justify; line-height: 1.9;">
+                    Our experienced tour managers handle every logistical detail of your journey — from
+                    transportation and accommodations to permits and itinerary planning — so your trip runs
+                    smoothly from start to finish without any stress or surprises.
+                </p>
+            </div>
+        </div>
+
+        <!-- Personalized Attention -->
+        <div class="col-md-6 mb-4">
+            <div class="p-4 rounded shadow-sm bg-white h-100">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center"
+                         style="width:50px; height:50px; background-color:#c0392b;">
+                        <i class="fa fa-user-check text-white"></i>
+                    </div>
+                    <h5 class="fw-bold mb-0">PERSONALIZED ATTENTION</h5>
+                </div>
+                <p class="text-muted" style="text-align: justify; line-height: 1.9;">
+                    Every traveler is unique, and we treat them that way. We take the time to understand your
+                    personal preferences, interests, and requirements to craft a journey that is perfectly
+                    tailored just for you — because no two trips should ever be the same.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container pb-0">
+        <div style="display:flex; align-items:stretch; border-radius: 12px; overflow:hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.10);">
+
+            <!-- E-Brochure -->
+            <a asp-controller="Home" asp-action="eBook" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding: 2.5rem 1rem; text-decoration:none; position:relative; overflow:hidden; border-right: 1px solid rgba(255,255,255,0.2);">
+                <div style="position:absolute; inset:0; background: linear-gradient(135deg, #1a1a2e 0%, #c0392b 100%); opacity:0.92;"></div>
+                <div style="position:absolute; inset:0; background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=60'); background-size:cover; background-position:center; opacity:0.25;"></div>
+                <div style="position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:10px;">
+                    <i class="fa fa-book" style="font-size:42px; color:#fff;"></i>
+                    <span style="font-size:16px; color:#fff; font-weight:600; letter-spacing:1px;">E-Brochure</span>
+                    <span style="font-size:13px; color:rgba(255,255,255,0.7);">Download PDF</span>
+                </div>
+            </a>
+
+            <!-- Reviews -->
+            <div style="flex:2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding: 2.5rem 1rem; background:#fff; border-right: 1px solid #e0e0e0;">
+                <span style="font-size:16px; color:#333; font-weight:600;">Write Us Your Reviews</span>
+                <div style="display:flex; gap:4px;">
+                    <i class="fa fa-star" style="font-size:30px; color:#00b67a;"></i>
+                    <i class="fa fa-star" style="font-size:30px; color:#00b67a;"></i>
+                    <i class="fa fa-star" style="font-size:30px; color:#00b67a;"></i>
+                    <i class="fa fa-star" style="font-size:30px; color:#00b67a;"></i>
+                    <i class="fa fa-star" style="font-size:30px; color:#00b67a;"></i>
+                </div>
+                <a asp-controller="Home" asp-action="Reviews" style="font-size:14px; color:#c0392b; text-decoration:none; font-weight:600; border: 1px solid #c0392b; padding: 6px 18px; border-radius:20px;">Leave a Review →</a>
+            </div>
+
+            <!-- Contact Us -->
+            <a asp-controller="Home" asp-action="Contact" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding: 2.5rem 1rem; text-decoration:none; position:relative; overflow:hidden; border-left: 1px solid rgba(255,255,255,0.2);">
+                <div style="position:absolute; inset:0; background: linear-gradient(135deg, #1a1a2e 0%, #2c3e50 100%); opacity:0.92;"></div>
+                <div style="position:absolute; inset:0; background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=60'); background-size:cover; background-position:center; opacity:0.25;"></div>
+                <div style="position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:10px;">
+                    <i class="fa fa-envelope" style="font-size:42px; color:#fff;"></i>
+                    <span style="font-size:16px; color:#fff; font-weight:600; letter-spacing:1px;">Contact Us</span>
+                    <span style="font-size:13px; color:rgba(255,255,255,0.7);">Get in Touch</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</div>

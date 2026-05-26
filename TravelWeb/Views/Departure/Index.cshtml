@@ -1,0 +1,116 @@
+﻿@model IEnumerable<TravelWeb.Models.Tour>
+@{
+    ViewData["Title"] = "Departures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top: 100px;">
+
+    <div class="text-center mb-5">
+        <small class="text-muted text-uppercase" style="letter-spacing: 3px;">Upcoming</small>
+        <h2 class="fw-bold mt-1 text-uppercase">Departures</h2>
+        <div style="width:60px; height:3px; background-color:#c0392b; margin:0 auto;"></div>
+    </div>
+
+    @{
+        var grouped = Model
+        .Where(t => t.DatePrices.Any())
+        .SelectMany(t => t.DatePrices.Select(dp => new { Tour = t, DatePrice = dp }))
+        .GroupBy(x => x.DatePrice.StartDate != null
+        ? x.DatePrice.StartDate.Substring(0, 4)
+        : "TBD")
+        .OrderBy(g => g.Key);
+    }
+
+    @foreach (var group in grouped)
+    {
+        <h5 class="fw-bold mt-4 mb-3">@group.Key</h5>
+
+        <table class="table table-bordered table-hover">
+            <thead style="background:#f8f8f8;">
+                <tr>
+                    <th style="padding:16px; font-weight:700;">Trip Name</th>
+                    <th style="padding:16px; font-weight:700;">Start Date</th>
+                    <th style="padding:16px; font-weight:700;">End Date</th>
+                    <th style="padding:16px; font-weight:700;">Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in group)
+                {
+                    <tr>
+                        <td style="padding:18px; vertical-align:middle;">
+                            <a asp-controller="Tours" asp-action="Details"
+                               asp-route-id="@item.Tour.Id"
+                               style="color:#c0392b; text-decoration:none; font-weight:500;">
+                                @item.Tour.Title
+                            </a>
+                        </td>
+                        <td style="padding:18px; vertical-align:middle;">@item.DatePrice.StartDate</td>
+                        <td style="padding:18px; vertical-align:middle;">@item.DatePrice.EndDate</td>
+                        <td style="padding:18px; vertical-align:middle; font-weight:500;">$@item.DatePrice.Price USD</td>
+                        <td style="padding:18px; vertical-align:middle; text-align:right;">
+                            <a asp-controller="Bookings" asp-action="Create"
+                               asp-route-tourId="@item.Tour.Id"
+                               asp-route-datePriceId="@item.DatePrice.Id"
+                               class="btn btn-danger rounded-pill px-4 fw-semibold">
+                                Book Now →
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="fa fa-calendar-o" style="font-size:48px; color:#ddd;"></i>
+            <p class="text-muted mt-3">No departures available at the moment.</p>
+        </div>
+    }
+
+</div>
+
+<div class="container py-5">
+    <div style="display:flex; align-items:stretch; border-radius: 12px; overflow:hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.10);">
+
+        <!-- E-Brochure -->
+        <a asp-controller="Home" asp-action="eBook" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding: 2.5rem 1rem; text-decoration:none; position:relative; overflow:hidden; border-right: 1px solid rgba(255,255,255,0.2);">
+            <div style="position:absolute; inset:0; background: linear-gradient(135deg, #1a1a2e 0%, #c0392b 100%); opacity:0.92;"></div>
+            <div style="position:absolute; inset:0; background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=60'); background-size:cover; background-position:center; opacity:0.25;"></div>
+            <div style="position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:10px;">
+                <i class="fa fa-book" style="font-size:42px; color:#fff;"></i>
+                <span style="font-size:16px; color:#fff; font-weight:600; letter-spacing:1px;">E-Brochure</span>
+                <span style="font-size:13px; color:rgba(255,255,255,0.7);">Download PDF</span>
+            </div>
+        </a>
+
+        <!-- Reviews -->
+        <div style="flex:2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding: 2.5rem 1rem; background:#fff; border-right: 1px solid #e0e0e0;">
+            <span style="font-size:16px; color:#333; font-weight:600;">Write Us Your Reviews</span>
+            <div style="display:flex; gap:4px;">
+                <i class="fa fa-star" style="font-size:30px; color:#00b67a;"></i>
+                <i class="fa fa-star" style="font-size:30px; color:#00b67a;"></i>
+                <i class="fa fa-star" style="font-size:30px; color:#00b67a;"></i>
+                <i class="fa fa-star" style="font-size:30px; color:#00b67a;"></i>
+                <i class="fa fa-star" style="font-size:30px; color:#00b67a;"></i>
+            </div>
+            <a asp-controller="Home" asp-action="Reviews" style="font-size:14px; color:#c0392b; text-decoration:none; font-weight:600; border: 1px solid #c0392b; padding: 6px 18px; border-radius:20px;">Leave a Review →</a>
+        </div>
+
+        <!-- Contact Us -->
+        <a asp-controller="Home" asp-action="Contact" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding: 2.5rem 1rem; text-decoration:none; position:relative; overflow:hidden; border-left: 1px solid rgba(255,255,255,0.2);">
+            <div style="position:absolute; inset:0; background: linear-gradient(135deg, #1a1a2e 0%, #2c3e50 100%); opacity:0.92;"></div>
+            <div style="position:absolute; inset:0; background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=60'); background-size:cover; background-position:center; opacity:0.25;"></div>
+            <div style="position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:10px;">
+                <i class="fa fa-envelope" style="font-size:42px; color:#fff;"></i>
+                <span style="font-size:16px; color:#fff; font-weight:600; letter-spacing:1px;">Contact Us</span>
+                <span style="font-size:13px; color:rgba(255,255,255,0.7);">Get in Touch</span>
+            </div>
+        </a>
+
+    </div>
+</div>

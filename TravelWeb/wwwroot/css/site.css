@@ -1,0 +1,116 @@
+﻿html {
+    font-size: 14px;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+footer {
+    margin: 0;
+    padding-bottom: 1rem;
+}
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+/* ── Navbar ── */
+.transparent-navbar {
+    background-color: transparent !important;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: none;
+}
+
+.transparent-navbar.scrolled {
+    background-color: #c0392b !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .nav-link {
+    color: white !important;
+}
+
+/* ── Carousel ── */
+.carousel-img {
+    height: 80vh;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.65);
+}
+
+/* ── Hero ── */
+.hero-section {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/images/hero.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+/* ── Footer Links ── */
+.footer-link {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    line-height: 2;
+    display: inline;
+}
+
+.footer-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Star Rating */
+.star-rating .star {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+/* Review Inputs */
+.review-input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    padding-left: 0;
+    background: transparent;
+}
+
+    .review-input:focus {
+        border-bottom: 1px solid #c0392b;
+        box-shadow: none;
+        outline: none;
+        background: transparent;
+    }

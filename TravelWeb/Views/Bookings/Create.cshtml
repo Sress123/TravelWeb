@@ -1,0 +1,171 @@
+﻿@model TravelWeb.Models.Booking
+@{
+    ViewData["Title"] = "Book Tour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container pb-5 pt-4" style="margin-top: 100px;">
+
+    <div class="text-center mb-5">
+        <small class="text-muted text-uppercase" style="letter-spacing: 3px;">Reservation</small>
+        <h2 class="fw-bold mt-1 text-uppercase">Book Your Tour</h2>
+        <div style="width:60px; height:3px; background-color:#c0392b; margin:0 auto;"></div>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- LEFT: Form -->
+        <div class="col-lg-8">
+            <div style="border: 1px solid #e0e0e0; border-radius:12px; padding: 2rem; background:#fff;">
+                <h5 class="fw-bold mb-4" style="color:#2d2d2d;">
+                    <i class="fa fa-user-circle me-2" style="color:#c0392b;"></i> Traveller Details
+                </h5>
+
+                <form asp-action="Create" method="post">
+                    <input asp-for="TourId" type="hidden" />
+                    <input asp-for="DatePriceId" type="hidden" />
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white"><i class="fa fa-user text-muted"></i></span>
+                                <input asp-for="FullName" class="form-control" placeholder="John Doe" required />
+                            </div>
+                            <span asp-validation-for="FullName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Email Address <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white"><i class="fa fa-envelope text-muted"></i></span>
+                                <input asp-for="Email" type="email" class="form-control" placeholder="john@email.com" required />
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Phone Number <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white"><i class="fa fa-phone text-muted"></i></span>
+                                <input asp-for="Phone" class="form-control" placeholder="+1 234 567 8900" required />
+                            </div>
+                            <span asp-validation-for="Phone" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Gender <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white"><i class="fa fa-venus-mars text-muted"></i></span>
+                                <select asp-for="Gender" class="form-select" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="Gender" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Country <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white"><i class="fa fa-flag text-muted"></i></span>
+                                <input asp-for="Country" class="form-control" placeholder="United States" required />
+                            </div>
+                            <span asp-validation-for="Country" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">No. of Travellers <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white"><i class="fa fa-users text-muted"></i></span>
+                                <input asp-for="NoOfTravellers" type="number" class="form-control" placeholder="2" min="1" required />
+                            </div>
+                            <span asp-validation-for="NoOfTravellers" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white"><i class="fa fa-map-marker text-muted"></i></span>
+                                <input asp-for="Address" class="form-control" placeholder="123 Main St, City, State" />
+                            </div>
+                            <span asp-validation-for="Address" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Message / Special Requests</label>
+                            <textarea asp-for="Message" class="form-control" rows="4"
+                                      placeholder="Any special requirements, dietary needs, or questions..."></textarea>
+                            <span asp-validation-for="Message" class="text-danger small"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4 d-flex gap-3">
+                        <button type="submit" class="btn btn-danger px-5 py-2 fw-bold">
+                            <i class="fa fa-check me-2"></i> Confirm Booking
+                        </button>
+                        <a asp-controller="Tours" asp-action="Details" asp-route-id="@Model.TourId"
+                           class="btn btn-outline-secondary px-4 py-2">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- RIGHT: Tour Summary -->
+        <div class="col-lg-4">
+            <div style="border: 1px solid #e0e0e0; border-radius:12px; overflow:hidden; background:#fff; position:sticky; top:90px;">
+
+                <div style="background: linear-gradient(135deg, #1a1a2e, #c0392b); padding: 1.5rem;">
+                    <small style="color:rgba(255,255,255,0.7); letter-spacing:2px; font-size:11px; text-transform:uppercase;">Your Selection</small>
+                    <h5 class="fw-bold text-white mt-1 mb-0">Tour Summary</h5>
+                </div>
+
+                <div style="padding: 1.5rem;">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-3" style="border-bottom: 1px solid #f0f0f0;">
+                        <span style="color:#777; font-size:13px;"><i class="fa fa-calendar me-2" style="color:#c0392b;"></i>Start Date</span>
+                        <span class="fw-semibold" style="font-size:14px;">@ViewBag.StartDate</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-3" style="border-bottom: 1px solid #f0f0f0;">
+                        <span style="color:#777; font-size:13px;"><i class="fa fa-calendar-check-o me-2" style="color:#c0392b;"></i>End Date</span>
+                        <span class="fw-semibold" style="font-size:14px;">@ViewBag.EndDate</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-3" style="border-bottom: 1px solid #f0f0f0;">
+                        <span style="color:#777; font-size:13px;"><i class="fa fa-tag me-2" style="color:#c0392b;"></i>Price Per Person</span>
+                        <span class="fw-bold" style="font-size:15px; color:#c0392b;">$@ViewBag.Price USD</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span style="color:#777; font-size:13px;"><i class="fa fa-map-marker me-2" style="color:#c0392b;"></i>Tour</span>
+                        <span class="fw-semibold" style="font-size:14px;">@ViewBag.TourName</span>
+                    </div>
+
+                </div>
+
+                <div style="background:#fafafa; padding: 1rem 1.5rem; border-top: 1px solid #f0f0f0;">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="fa fa-shield" style="color:#c0392b; font-size:18px;"></i>
+                        <small style="color:#777; font-size:12px;">Your booking is safe and secure with us.</small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TravelWeb</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TravelWeb.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark fixed-top transparent-navbar">
+            <div class="container-fluid px-4">
+
+                <!-- Brand/Logo -->
+                <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo.png" alt="Logo" height="75" class="me-2" />
+                </a>
+
+                <!-- Mobile Toggle -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbarCollapse"
+                        aria-controls="mainNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Nav Links -->
+                <div class="collapse navbar-collapse" id="mainNavbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" asp-controller="TopTours" asp-action="Index">TOP TOURS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" asp-controller="Destinations" asp-action="Index">DESTINATIONS & TOURS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" asp-controller="Departure" asp-action="Index">DEPARTURES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" asp-controller="Home" asp-action="About">ABOUT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" asp-controller="Home" asp-action="Contact">CONTACT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" asp-controller="Home" asp-action="Reviews">REVIEWS</a>
+                        </li>
+                    </ul>
+
+                    @if (Context.Session.GetString("UserRole") == "Admin")
+                        {
+                            <li class="nav-item text-white">|</li>
+                            <li class="nav-item">
+                                <a class="nav-link fw-semibold text-warning" asp-controller="Home" asp-action="Logout">
+                                    <i class="fa fa-sign-out me-1"></i> Logout
+                                </a>
+                            </li>
+                        }
+
+                    <!-- Right Side: WhatsApp + Search + Socials -->
+                    <ul class="navbar-nav ms-auto align-items-center gap-3">
+                        <li class="nav-item">
+                            <a class="nav-link fw-semibold" href="https://wa.me/9779843056391" target="_blank">
+                                <i class="fa-brands fa-whatsapp"></i> +9779843056391
+                            </a>
+                        </li>
+                        <li class="nav-item text-white">|</li>
+                        <li class="nav-item">
+                            <a class="nav-link px-0" href="https://facebook.com/" target="_blank">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link px-0" href="https://instagram.com/" target="_blank">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link px-0" href="https://youtube.com" target="_blank">
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer style="background-color: #1a1a1a; color: #ccc;">
+
+        <!-- Social Icons Row -->
+        <div class="text-center pt-4 pb-3">
+            <a href="https://www.facebook.com/" class="btn btn-dark rounded-circle mx-1" style="width:40px; height:40px;">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/" class="btn btn-dark rounded-circle mx-1" style="width:40px; height:40px;">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/" class="btn btn-dark rounded-circle mx-1" style="width:40px; height:40px;">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://www.x.com/" class="btn btn-dark rounded-circle mx-1" style="width:40px; height:40px;">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+        </div>
+
+        <hr style="border-color: #444;" />
+
+        <!-- Main Footer Columns -->
+        <div class="container py-3">
+            <div class="row">
+
+                <!-- Column 2: Primary Menu -->
+                <div class="col-md-4 mb-4">
+                    <h6 class="text-white fw-bold mb-3">PRIMARY MENU</h6>
+                    <ul class="list-unstyled">
+                        <li><a asp-controller="Destinations" asp-action="Index" class="footer-link text-white" style="font-weight: bold;">Nepal</a></li>
+                        <li><a asp-controller="Destinations" asp-action="Index" class="footer-link text-white" style="font-weight: bold;">Bhutan</a></li>
+                        <li><a asp-controller="Destinations" asp-action="Index" class="footer-link text-white" style="font-weight: bold;">Tibet</a></li>
+                        <li><a asp-controller="Destinations" asp-action="Index" class="footer-link text-white" style="font-weight: bold;">India</a></li>
+                        <li><a asp-controller="Destinations" asp-action="Index" class="footer-link text-white" style="font-weight: bold;">Bangladesh</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Activities -->
+                <div class="col-md-4 mb-4">
+                    <h6 class="text-white fw-bold mb-3">ACTIVITIES</h6>
+                    <ul class="list-unstyled">
+                        <li><a asp-controller="Destinations" asp-action="Index" class="footer-link text-white" style="font-weight: bold;">Trekking &amp; Hiking</a></li>
+                        <li><a asp-controller="Destinations" asp-action="Index" class="footer-link text-white" style="font-weight: bold;">Nature &amp; Cultural Excursions</a></li>
+                        <li><a asp-controller="Destinations" asp-action="Index" class="footer-link text-white" style="font-weight: bold;">Motor Biking Tour</a></li>
+                        <li><a asp-controller="Destinations" asp-action="Index" class="footer-link text-white" style="font-weight: bold;">Peak Climbing &amp; Expeditions</a></li>
+                        <li><a asp-controller="Destinations" asp-action="Index" class="footer-link text-white" style="font-weight: bold;">Helicopter Excursions</a></li>
+                        <li><a asp-controller="Destinations" asp-action="Index" class="footer-link text-white" style="font-weight: bold;">Yoga &amp; Wellness</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Contact Information -->
+                <div class="col-md-4 mb-4">
+                    <h6 class="text-white fw-bold mb-3">CONTACT INFORMATION</h6>
+                    <ul class="list-unstyled" style="font-weight: bold;">
+                        <li class="d-flex gap-2 mb-2">
+                            <i class="bi bi-geo-alt text-white mt-1"></i>
+                            <span>Kathmandu -10, Shankhamul, Nepal</span>
+                        </li>
+                        <li class="d-flex gap-2 mb-2">
+                            <i class="bi bi-telephone text-white mt-1"></i>
+                            <span>+977 9843056391, <br />+977 9843056391</span>
+                        </li>
+                        <li class="d-flex gap-2 mb-2">
+                            <i class="bi bi-envelope text-white mt-1"></i>
+                            <span>info@@prabeenGole.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <hr style="border-color: #444;" />
+
+        <!-- Bottom Bar -->
+        <div class="container pb-3">
+            <div class="row align-items-center text-center text-md-start">
+
+                <!-- Copyright -->
+                <div class="col-md-4" style="font-weight: bold;">
+                    <small>Copyright&copy; 2025–@DateTime.Now.Year. Submmit Explores. All Rights Reserved.</small>
+                </div>
+
+                <!-- Logo Center -->
+                <div class="col-md-4 text-center">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/images/logo.png" height="60" alt="Logo" />
+                    </a>
+                </div>
+
+                <!-- Bottom Links -->
+                <div class="col-md-4 text-md-end">
+                    <a asp-controller="Home" asp-action="About" class="footer-link me-2" style="font-weight: bold;">About Us</a> |
+                    <a asp-controller="Home" asp-action="Contact" class="footer-link mx-2" style="font-weight: bold;">Contact Us</a> |
+                    <a asp-controller="Home" asp-action="eBook" class="footer-link mx-2" style="font-weight: bold;">e-Brochure</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

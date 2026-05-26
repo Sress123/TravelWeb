@@ -1,0 +1,80 @@
+﻿@model List<TravelWeb.Models.Destination>
+@{
+    ViewData["Title"] = "Destinations";
+    var grouped = Model.GroupBy(d => d.Country);
+}
+
+<style>
+    /* Destination links */
+    .destination-link {
+        color: black;
+        font-size: 0.95rem;
+        line-height: 2;
+    }
+
+.destination-link:hover {
+    color: #922b21;
+    text-decoration: underline !important;
+}
+</style>
+
+<!-- Breadcrumb -->
+<div class="container-fluid px-4 py-2 mt-5 pt-4" style="border-bottom: 1px solid #ddd;">
+    <nav>
+        <a href="/" class="text-dark text-decoration-none">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-muted">Destinations</span>
+    </nav>
+</div>
+
+<div class="container py-5">
+
+    <!-- Header + Add Button -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <small class="text-muted text-uppercase" style="letter-spacing: 3px;">Explore</small>
+            <h2 class="fw-bold mt-1">ALL DESTINATIONS & TOURS</h2>
+            <div style="width: 60px; height: 3px; background-color: #c0392b;"></div>
+        </div>
+        @if (Context.Session.GetString("UserRole") == "Admin")
+        {
+            <a asp-action="Create" class="btn btn-danger px-4 fw-semibold">
+                <i class="fa fa-plus me-2"></i> Add Destination
+            </a>
+        }
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5 text-muted">
+            <i class="fa fa-map-marker-alt fa-3x mb-3"></i>
+            <h5>No destinations yet. Add your first one!</h5>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var group in grouped)
+            {
+                <div class="col-md-2">
+                    <!-- Country Heading -->
+                    <h5 class="fw-bold text-dark text-uppercase mb-3">@group.Key</h5>
+
+                    <!-- Categories under this country -->
+                    <ul class="list-unstyled">
+                        @foreach (var item in group)
+                        {
+                            <li class="mb-1">
+                                <a asp-action="Details" asp-route-id="@item.Id"
+                                   class="text-decoration-none destination-link fs-6">
+                                    @item.Destinationcategory
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    }
+
+</div>

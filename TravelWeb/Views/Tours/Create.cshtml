@@ -1,0 +1,150 @@
+﻿@model TravelWeb.Models.Tour
+@{
+    ViewData["Title"] = "Create Tour";
+}
+
+<div class="container py-5 mt-5" style="max-width: 700px;">
+    <h2 class="fw-bold mb-4">Create Tour</h2>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="DestinationId" type="hidden" />
+        <input asp-for="PhotoPath" type="hidden" />
+        <input asp-for="RouteMapPhotoPath" type="hidden" />
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Title</label>
+            <input asp-for="Title" class="form-control" placeholder="Enter tour title..." required />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="7"
+                      placeholder="Describe this tour..."></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Duration</label>
+            <input asp-for="Duration" class="form-control" placeholder="e.g. 14 Days / 13 Nights" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Grade</label>
+            <select asp-for="Grade" class="form-select">
+                <option value="">-- Select Grade --</option>
+                <option value="Easy">Easy</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Strenuous">Strenuous</option>
+                <option value="Challenging">Challenging</option>
+                <option value="Extreme">Extreme</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Best Seasons</label>
+            <input asp-for="BestSeasons" class="form-control" placeholder="e.g. Spring & Autumn" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Altitude</label>
+            <input asp-for="Altitude" class="form-control" placeholder="e.g. 5,364 m / 17,598 ft" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Region</label>
+            <input asp-for="Region" class="form-control" placeholder="e.g. Khumbu, Nepal" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Accommodation</label>
+            <select asp-for="Accommodation" class="form-select">
+                <option value="">-- Select Accommodation --</option>
+                <option value="Tea House">Tea House</option>
+                <option value="Lodge">Lodge</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Camping">Camping</option>
+                <option value="Homestay">Homestay</option>
+            </select>
+        </div>
+
+        <!-- Tour Photo -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Tour Photo</label>
+            @if (!string.IsNullOrEmpty(Model.PhotoPath))
+            {
+                <div class="mb-2">
+                    <img src="@Model.PhotoPath" class="rounded"
+                         style="height:150px; object-fit:cover; width:100%;" alt="Current Photo" />
+                    <small class="text-muted">Current photo — upload new to replace</small>
+                </div>
+            }
+            <input type="file" asp-for="PhotoFile" class="form-control" accept="image/*" id="photoInput" />
+            <div class="mt-2" id="photoPreviewContainer" style="display:none;">
+                <img id="photoPreview" src="#" alt="Preview"
+                     class="rounded" style="height:200px; object-fit:cover; width:100%;" />
+            </div>
+        </div>
+
+        <!-- Route Map Photo -->
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Route Map Photo</label>
+            @if (!string.IsNullOrEmpty(Model.RouteMapPhotoPath))
+            {
+                <div class="mb-2">
+                    <img src="@Model.RouteMapPhotoPath" class="rounded"
+                         style="height:150px; object-fit:cover; width:100%;" alt="Current Route Map" />
+                    <small class="text-muted">Current route map — upload new to replace</small>
+                </div>
+            }
+            <input type="file" asp-for="RouteMapPhotoFile" class="form-control" accept="image/*" id="routeMapInput" />
+            <div class="mt-2" id="routeMapPreviewContainer" style="display:none;">
+                <img id="routeMapPreview" src="#" alt="Route Map Preview"
+                     class="rounded" style="height:200px; object-fit:cover; width:100%;" />
+            </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-danger px-4">
+                @(Model.Id == 0 ? "Save Tour" : "Save Changes")
+            </button>
+            <a href="javascript:history.back()" class="btn btn-outline-secondary px-4">Cancel</a>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Tour photo preview
+        document.getElementById('photoInput').addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('photoPreview').src = e.target.result;
+                    document.getElementById('photoPreviewContainer').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Route map photo preview
+        document.getElementById('routeMapInput').addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('routeMapPreview').src = e.target.result;
+                    document.getElementById('routeMapPreviewContainer').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .contact-img {
+        height: 80vh;
+        object-fit: cover;
+        object-position: center;
+        filter: brightness(0.6);
+    }
+</style>
+
+<!-- Hero Image -->
+<div style="position: relative;">
+    <img src="~/images/carousel/3.jpg" class="d-block w-100 contact-img" alt="Contact Us" />
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <h1 class="text-white fw-bold text-uppercase" style="font-size: 3rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">Contact Us</h1>
+    </div>
+</div>
+
+<!-- Breadcrumb -->
+<div class="container-fluid px-4 py-2" style="border-bottom: 1px solid #ddd;">
+    <nav>
+        <a href="/" class="text-dark text-decoration-none">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-muted">Contact Us</span>
+    </nav>
+</div>
+
+<!-- Main Content -->
+<div class="container py-5">
+    <div class="row">
+
+        <!-- Left: Get In Touch -->
+        <div class="col-md-6 mb-5">
+            <div class="mb-5">
+                <small class="text-muted text-uppercase" style="letter-spacing: 3px;">Reach Out</small>
+                <h2 class="fw-bold mt-1">GET IN TOUCH</h2>
+                <div style="width: 60px; height: 3px; background-color: #c0392b;"></div>
+            </div>
+
+            <!-- Mobile -->
+            <div class="d-flex align-items-start gap-3 py-3" style="border-bottom: 1px solid #ddd;">
+                <i class="fa fa-mobile-alt fa-lg mt-1 text-dark"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">MOBILE (24/7)</h6>
+                    <p class="mb-0 text-muted">+977 9843056391</p>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="d-flex align-items-start gap-3 py-3" style="border-bottom: 1px solid #ddd;">
+                <i class="fa fa-envelope fa-lg mt-1 text-dark"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">EMAIL (PRIMARY)</h6>
+                    <p class="mb-0 text-muted">info@prabeenGole.com</p>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="d-flex align-items-start gap-3 py-3" style="border-bottom: 1px solid #ddd;">
+                <i class="fa fa-map-marker-alt fa-lg mt-1 text-dark"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">CONTACT US</h6>
+                    <p class="mb-0 text-muted">Kathmandu -10, Shankhamul, Nepal</p>
+                </div>
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="d-flex align-items-start gap-3 py-3" style="border-bottom: 1px solid #ddd;">
+                <i class="fa-brands fa-whatsapp fa-lg mt-1 text-dark"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">WHATSAPP</h6>
+                    <p class="mb-0 text-muted">+977 9843056391</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right: Send Us Message -->
+        <div class="col-md-6 mb-5">
+            <div class="mb-5">
+                <small class="text-muted text-uppercase" style="letter-spacing: 3px;">Message Us</small>
+                <h2 class="fw-bold mt-1">SEND US MESSAGE</h2>
+                <div style="width: 60px; height: 3px; background-color: #c0392b;"></div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Your Name</label>
+                <input type="text" class="form-control" placeholder="" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Your Email</label>
+                <input type="email" class="form-control" placeholder="" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Subject</label>
+                <input type="text" class="form-control" placeholder="" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Your Message</label>
+                <textarea class="form-control" rows="5" placeholder=""></textarea>
+            </div>
+
+            <button class="btn btn-danger px-4">Send Message</button>
+        </div>
+
+    </div>
+</div>
